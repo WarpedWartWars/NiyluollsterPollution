@@ -49,3 +49,18 @@ button:hover {
     display: flex;
     flex-direction: column;
 }
+
+.triangle {
+    height: 3.5em;
+    margin-right: -2em;
+}
+
+.antitriangle {
+    height: 3.5em;
+    margin-right: -2em;
+    rotate: 180deg;
+}
+
+.row {
+    margin-bottom: -0.15em;
+}
