@@ -6,11 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Niyluollster Pollution</title>
     <script type="module" src="/src/main.ts"></script>
-    <link rel="stylesheet" type="text/css" href="/src/style.css">
+
 </head>
 
 <body>
-
+    <div id="join">
+        <textarea
+            id="joinareaid"
+            name="joinarea"
+            rows="1"
+            cols="50"
+            style="text-align: left"
+        ></textarea>
+        <button id="start">Start Game</button>
+    </div>
+    <div id="game" style="display: none;">
         <textarea
             id="importareaid"
             name="importarea"
@@ -21,11 +31,12 @@
         <button id="saveimportconfirm" style="display: none">
             Import Save
         </button>
-     <div id="settings">
+        <div id="settings">
             <button id="wipesave">wipesave</button>
             <button id="export">Export Save</button>
             <button id="import">Import Save</button>
         </div>
+    </div>
     <div id="version">v. alpha0.0.1</div>
 </body>
 

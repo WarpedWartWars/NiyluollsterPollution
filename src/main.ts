@@ -1,3 +1,4 @@
+import "./style.css";
 import element from "./dom";
 import player, {
     load,
@@ -27,26 +28,30 @@ setInterval(() => {
     updateButtons();
 }, 100);
 
-const socket = new WebSocket('ws://localhost');
 
-socket.onopen = function(event) {
-    console.log('Connection established');
+function joinGame(): void {
+    const socket = new WebSocket(element("joinareaid").value);
 
-    socket.send('Hellodrgfdgfdgfr!');
-    socket.send('Hello Server!');
-};
+    socket.onopen = function(event) {
+        console.log('Connection established');
 
-socket.onmessage = function(event) {
-    console.log('Message from server: ', event.data);
-};
+        socket.send('Hellodrgfdgfdgfr!');
+        socket.send('Hello Server!');
+    };
 
-socket.onclose = function(event) {
-    console.log('Connection closed');
-};
+    socket.onmessage = function(event) {
+        console.log('Message from server: ', event.data);
+    };
 
-socket.onerror = function(error) {
-    console.error('WebSocket error: ', error);
-};
+    socket.onclose = function(event) {
+        console.log('Connection closed');
+    };
+
+    socket.onerror = function(error) {
+        console.error('WebSocket error: ', error);
+    };
+}
+element("start").addEventListener("click", joinGame);
 
 //save loop
 setInterval(save, 5000);
