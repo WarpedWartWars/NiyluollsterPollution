@@ -30,6 +30,8 @@ setInterval(() => {
 
 
 function joinGame(): void {
+    element("join").style.display = "none";
+    element("game").style.display = "block";
     const socket = new WebSocket(element("joinareaid").value);
 
     socket.onopen = function(event) {

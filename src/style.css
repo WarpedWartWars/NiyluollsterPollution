@@ -44,3 +44,30 @@ button:hover {
     bottom: 0;
     right: 0;
 }
+
+.uptriangle {
+  width: 20%;
+  height: 100px;
+  background: white;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  border: 2px solid black;
+}
+.downtriangle {
+  width: 20%;
+  height: 100px;
+  background: white;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  border: 2px solid black;
+}
+ 
+#grid {
+    display: grid;
+    gap: 0px;
+    max-width: 1600px;
+    margin: auto;
+    padding: -20px;
+}
+
+.line {
+    display: inline-block
+}
