@@ -27,6 +27,27 @@ setInterval(() => {
     updateButtons();
 }, 100);
 
+const socket = new WebSocket('ws://localhost');
+
+socket.onopen = function(event) {
+    console.log('Connection established');
+
+    socket.send('Hellodrgfdgfdgfr!');
+    socket.send('Hello Server!');
+};
+
+socket.onmessage = function(event) {
+    console.log('Message from server: ', event.data);
+};
+
+socket.onclose = function(event) {
+    console.log('Connection closed');
+};
+
+socket.onerror = function(error) {
+    console.error('WebSocket error: ', error);
+};
+
 //save loop
 setInterval(save, 5000);
 
