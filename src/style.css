@@ -51,16 +51,19 @@ button:hover {
 }
 
 .triangle {
-    height: 3.5em;
-    margin-right: -2em;
+    position: relative;
+    top: calc(2px * sin(30deg));
+    height: calc(20px * sqrt(3));
+    margin-right: calc(-20px + 2px * cos(30deg));
 }
 
 .antitriangle {
-    height: 3.5em;
-    margin-right: -2em;
+    height: calc(20px * sqrt(3));
+    margin-right: calc(-20px + 2px * cos(30deg));
     rotate: 180deg;
 }
 
 .row {
-    margin-bottom: -0.15em;
+    height: calc(20px * sqrt(3) + 2px);
+    margin-bottom: 1px;
 }

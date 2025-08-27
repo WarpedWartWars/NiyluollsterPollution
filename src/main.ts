@@ -7,8 +7,6 @@ import player, {
 
 let socket: WebSocket;
 
-load();
-
 //game loop
 setInterval(() => {
     //test
@@ -26,6 +24,27 @@ setInterval(() => {
     updateButtons();
 }, 100);
 
+function genGrid(): void {
+    const grid = element("grid");
+    for (let i = 0; i < 10; i++) {
+        const row = document.createElement("div");
+        row.id = `row${i}`;
+        row.className = "row";
+        grid.appendChild(row);
+        for (let j = 0; j < 19; j++) {
+            const triangle = document.createElement("img");
+            triangle.src = "/src/triangle.svg";
+            if (j % 2 == i % 2) {
+                triangle.className = "triangle";
+                triangle.id = `triangle${i}${j}`;
+            } else {
+                triangle.className = "antitriangle";
+                triangle.id = `triangle${i}${j}`;
+            }
+            row.appendChild(triangle);
+        }
+    }
+}
 
 function joinGame(): void {
     //element("join").style.display = "none";
@@ -55,6 +74,9 @@ function joinGame(): void {
     socket.onerror = function(error) {
         console.error('WebSocket error: ', error);
     };
+    
+    load();
+    genGrid();
 }
 
 function sendMessage() {
