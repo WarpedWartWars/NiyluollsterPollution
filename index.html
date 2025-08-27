@@ -18,23 +18,26 @@
             cols="50"
             style="text-align: left"
         ></textarea>
+        <textarea
+            id="usernameid"
+            name="username"
+            rows="1"
+            cols="50"
+            style="text-align: left"
+        ></textarea>
         <button id="start">Start Game</button>
     </div>
     <div id="game" style="display: none;">
+        <div id="messagesid"></div>
         <textarea
-            id="importareaid"
-            name="importarea"
-            rows="4"
+            id="messageid"
+            name="message"
+            rows="1"
             cols="50"
-            style="display: none; text-align: left"
+            style="text-align: left"
         ></textarea>
-        <button id="saveimportconfirm" style="display: none">
-            Import Save
-        </button>
+        <button id="send">Send Message</button>
         <div id="settings">
-            <button id="wipesave">wipesave</button>
-            <button id="export">Export Save</button>
-            <button id="import">Import Save</button>
         </div>
         <div id="grid">
            <img src="/src/triangle.svg">

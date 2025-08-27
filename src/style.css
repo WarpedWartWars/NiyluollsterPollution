@@ -45,3 +45,7 @@ button:hover {
     right: 0;
 }
 
+#messagesid {
+    display: flex;
+    flex-direction: column;
+}

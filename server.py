@@ -8,14 +8,16 @@ connections = set()
 
 async def play(websocket, player):
     async for message in websocket:
+        print(message)
         # Parse a "play" event from the UI.
-        event = json.loads(message)
+        eventin = json.loads(message)
 
         # Send a "play" event to update the UI.
-        event = {
+        eventout = {
             "player": player,
+            "message": eventin["message"],
         }
-        broadcast(connections, json.dumps(event))
+        broadcast(connections, json.dumps(eventout))
 
 # Creating SebWocket server
 async def ws_server(websocket):

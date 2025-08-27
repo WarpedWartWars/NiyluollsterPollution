@@ -2,12 +2,10 @@ import "./style.css";
 import element from "./dom";
 import player, {
     load,
-    resetGame,
     save,
-    saveExport,
-    saveImport,
-    saveImportConfirm
 } from "./data";
+
+let socket: WebSocket;
 
 load();
 
@@ -30,18 +28,24 @@ setInterval(() => {
 
 
 function joinGame(): void {
-    element("join").style.display = "none";
+    //element("join").style.display = "none";
     element("game").style.display = "block";
-    const socket = new WebSocket((element("joinareaid") as HTMLInputElement).value);
+    socket = new WebSocket((element("joinareaid") as HTMLInputElement).value);
+    const username = (element("usernameid") as HTMLInputElement).value;
 
     socket.onopen = function(event) {
         console.log('Connection established');
 
-        socket.send(JSON.stringify({player:"a"}));
+        socket.send(JSON.stringify({player: username}));
+        socket.send(JSON.stringify({message: "has joined"}));
     };
 
     socket.onmessage = function(event) {
         console.log('Message from server: ', event.data);
+        var message = document.createElement("span");
+        var daat = JSON.parse(event.data)
+        message.textContent = daat["player"] + ": " + daat["message"];
+        element("messagesid").appendChild(message);
     };
 
     socket.onclose = function(event) {
@@ -52,12 +56,13 @@ function joinGame(): void {
         console.error('WebSocket error: ', error);
     };
 }
+
+function sendMessage() {
+    var messageElement = element("messageid") as HTMLInputElement;
+    socket.send(JSON.stringify({message: messageElement.value}));
+    messageElement.value = "";
+}
+
+
 element("start").addEventListener("click", joinGame);
-
-//save loop
-setInterval(save, 5000);
-
-element("wipesave").addEventListener("click", resetGame);
-element("export").addEventListener("click", saveExport);
-element("import").addEventListener("click", saveImport);
-element("saveimportconfirm").addEventListener("click", saveImportConfirm);
+element("send").addEventListener("click", sendMessage);
