@@ -23,6 +23,7 @@ async def ws_server(websocket):
     message = await websocket.recv()
     event = json.loads(message)
     player = event["player"]
+    print(f"{player} has joined")
 
     # Register to receive moves from this game.
     connections.add(websocket)
