@@ -32,13 +32,12 @@ setInterval(() => {
 function joinGame(): void {
     element("join").style.display = "none";
     element("game").style.display = "block";
-    const socket = new WebSocket(element("joinareaid").value);
+    const socket = new WebSocket((element("joinareaid") as HTMLInputElement).value);
 
     socket.onopen = function(event) {
         console.log('Connection established');
 
-        socket.send('Hellodrgfdgfdgfr!');
-        socket.send('Hello Server!');
+        socket.send(JSON.stringify({player:"a"}));
     };
 
     socket.onmessage = function(event) {
